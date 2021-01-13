@@ -2,9 +2,7 @@ package com.apispring.apispring.application.usecases;
 
 import com.apispring.apispring.application.repository.BookRepository;
 import com.apispring.apispring.domain.exception.BookNotFound;
-import com.apispring.apispring.domain.model.Book;
-
-import java.util.Optional;
+import com.apispring.apispring.domain.model.BookModel;
 
 public class SoftDeleteBook {
 
@@ -14,14 +12,15 @@ public class SoftDeleteBook {
         this.bookRepository = bookRepository;
     }
 
-    public void handle(Long id) throws BookNotFound {
-        Optional<Book> bookFound = this.bookRepository.findById(id);
+    public void handle(Long id){
+        BookModel bookFound = this.bookRepository.findById(id);
 
-        if (!bookFound.isPresent()){
-            throw  new BookNotFound();
+        if (bookFound == null){
+            throw new BookNotFound();
         }
-        Book bookEntity = bookFound.get();
-        bookEntity.setDeleted(true);
-        this.bookRepository.save(bookEntity);
+
+        BookModel book = bookFound;
+        book.setDeleted(true);
+        this.bookRepository.save(book);
     }
 }

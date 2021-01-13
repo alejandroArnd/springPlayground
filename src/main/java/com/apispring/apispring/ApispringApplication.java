@@ -15,7 +15,7 @@ import java.util.Arrays;
 @SpringBootApplication(scanBasePackages = "com.apispring.apispring.infrastructure")
 @EnableJpaRepositories(basePackages = "com.apispring.apispring.infrastructure.repository.springdata")
 @EnableJpaAuditing
-@EntityScan("com.apispring.apispring.domain.model")
+@EntityScan("com.apispring.apispring.infrastructure.entity")
 public class ApispringApplication {
 
     public static void main(String[] args) {

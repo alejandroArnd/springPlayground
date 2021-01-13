@@ -4,6 +4,8 @@ public class RequestUpdateBookDto extends BookDto {
 
     private Long id;
 
+    public RequestUpdateBookDto(){ }
+
     public RequestUpdateBookDto(Long id, String title, String author, String overview, Integer pages) {
         super(title, author, overview, pages);
         this.id = id;

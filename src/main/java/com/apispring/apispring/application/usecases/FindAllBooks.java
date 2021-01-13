@@ -1,7 +1,7 @@
 package com.apispring.apispring.application.usecases;
 
 import com.apispring.apispring.application.repository.BookRepository;
-import com.apispring.apispring.domain.model.Book;
+import com.apispring.apispring.domain.model.BookModel;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class FindAllBooks {
         this.bookRepository = bookRepository;
     }
 
-    public List<Book> handle(){
+    public List<BookModel> handle(){
         return this.bookRepository.findAll();
     }
 }

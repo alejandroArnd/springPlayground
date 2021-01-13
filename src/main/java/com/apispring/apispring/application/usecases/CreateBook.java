@@ -3,9 +3,7 @@ package com.apispring.apispring.application.usecases;
 import com.apispring.apispring.application.repository.BookRepository;
 import com.apispring.apispring.application.dto.BookDto;
 import com.apispring.apispring.domain.exception.*;
-import com.apispring.apispring.domain.model.Book;
-
-import java.util.Optional;
+import com.apispring.apispring.domain.model.BookModel;
 
 public class CreateBook {
 
@@ -16,12 +14,12 @@ public class CreateBook {
     }
 
     public void handle (BookDto bookDto) throws BookAlreadyExist {
-        Optional<Book> bookFound = this.bookRepository.findByTitle(bookDto.getTitle());
+       BookModel bookFound = this.bookRepository.findByTitle(bookDto.getTitle());
 
-        if (bookFound.isPresent()){
-            throw new BookAlreadyExist();
-        }
-        Book book= new Book(bookDto.getTitle(),bookDto.getAuthor(), bookDto.getOverview(), bookDto.getPages());
-        this.bookRepository.save(book);
+       if (bookFound != null){
+           throw new BookAlreadyExist();
+       }
+       BookModel book= new BookModel(bookDto.getTitle(),bookDto.getAuthor(), bookDto.getOverview(), bookDto.getPages());
+       this.bookRepository.save(book);
     }
 }

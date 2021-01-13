@@ -2,9 +2,7 @@ package com.apispring.apispring.application.usecases;
 
 import com.apispring.apispring.application.repository.BookRepository;
 import com.apispring.apispring.domain.exception.BookNotFound;
-import com.apispring.apispring.domain.model.Book;
-
-import java.util.Optional;
+import com.apispring.apispring.domain.model.BookModel;
 
 public class FindBookById {
 
@@ -14,12 +12,13 @@ public class FindBookById {
         this.bookRepository = bookRepository;
     }
 
-    public Book handle(Long id) throws BookNotFound {
-        Optional<Book> book = this.bookRepository.findById(id);
+    public BookModel handle(Long id){
+        BookModel book = this.bookRepository.findById(id);
 
-        if (!book.isPresent()){
-            throw  new BookNotFound();
+        if (book == null){
+            throw new BookNotFound();
         }
-        return book.get();
+
+        return book;
     }
 }

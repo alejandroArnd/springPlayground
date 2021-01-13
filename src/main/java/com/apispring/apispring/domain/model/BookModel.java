@@ -1,29 +1,16 @@
 package com.apispring.apispring.domain.model;
 
-import javax.persistence.*;
-
-@Entity
-@Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"title"})
-})
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BookModel {
     private Long id;
-    @Column(name = "title", length = 255, nullable = false)
     private String title;
-    @Column(name = "author", length = 255, nullable = false)
     private String author;
-    @Column(name = "overview", columnDefinition = "TEXT", length = 1000, nullable = true)
     private String overview;
-    @Column(name = "pages", nullable = false)
     private Integer pages;
-    @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
 
-    public Book() { }
+    public BookModel() { }
 
-    public Book(String title, String author, String overview, Integer pages) {
+    public BookModel(String title, String author, String overview, Integer pages) {
         this.title = title;
         this.author = author;
         this.overview = overview;

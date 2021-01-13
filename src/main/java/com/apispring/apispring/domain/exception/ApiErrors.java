@@ -3,7 +3,7 @@ package com.apispring.apispring.domain.exception;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ApiErrors extends Exception{
+public class ApiErrors extends RuntimeException{
     public ApiErrors(String message) {
         super(message);
     }

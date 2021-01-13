@@ -5,7 +5,7 @@ import com.apispring.apispring.application.services.ServiceValidatorBooks;
 import com.apispring.apispring.application.usecases.*;
 import com.apispring.apispring.domain.exception.ApiErrors;
 import com.apispring.apispring.application.dto.BookDto;
-import com.apispring.apispring.domain.model.Book;
+import com.apispring.apispring.domain.model.BookModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -52,12 +52,10 @@ public class BooksController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiErrors.toJson());
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(json);
-
     }
 
-
     @GetMapping(value ="/api/books")
-    public ResponseEntity<Object> findAllBooks() {
+    public ResponseEntity<List> findAllBooks() {
         List allBooks = this.findAllBooks.handle();
         return ResponseEntity.status(HttpStatus.OK).body(allBooks);
     }
@@ -89,7 +87,7 @@ public class BooksController {
 
     @PutMapping(value ="/api/books")
     public ResponseEntity<Object> updateBook(@RequestBody RequestUpdateBookDto requestUpdateBookDto) {
-        Book bookUpdate;
+        BookModel bookUpdate;
         try{
             this.validatorBooks.checkPropertiesBook(requestUpdateBookDto);
             bookUpdate = this.updateBook.handle(requestUpdateBookDto);

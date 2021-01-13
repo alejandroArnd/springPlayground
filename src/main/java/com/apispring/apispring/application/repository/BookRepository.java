@@ -1,18 +1,16 @@
 package com.apispring.apispring.application.repository;
 
-import com.apispring.apispring.domain.model.Book;
-import com.apispring.apispring.application.dto.BookDto;
+import com.apispring.apispring.domain.model.BookModel;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BookRepository {
 
-    Optional<Book> findById(Long id);
+    BookModel findById(Long id);
 
-    Optional<Book> findByTitle(String title);
+    BookModel findByTitle(String title);
 
-    List<Book> findAll();
+    List<BookModel> findAll();
 
-    void save(Book book);
+    void save(BookModel book);
 }
