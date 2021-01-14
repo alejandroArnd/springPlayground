@@ -6,6 +6,7 @@ import com.apispring.apispring.application.usecases.*;
 import com.apispring.apispring.domain.exception.ApiErrors;
 import com.apispring.apispring.application.dto.BookDto;
 import com.apispring.apispring.domain.model.BookModel;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -15,30 +16,15 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequiredArgsConstructor
 public class BooksController {
 
-    private CreateBook createBook;
-    private FindAllBooks findAllBooks;
-    private FindBookById findBookById;
-    private SoftDeleteBook softDeleteBook;
-    private UpdateBook updateBook;
-    private ServiceValidatorBooks validatorBooks;
-
-    public BooksController(
-            CreateBook createBook,
-            FindAllBooks findAllBooks,
-            FindBookById findBookById,
-            SoftDeleteBook softDeleteBook,
-            UpdateBook updateBook,
-            ServiceValidatorBooks validatorBooks
-    ) {
-        this.createBook = createBook;
-        this.findAllBooks = findAllBooks;
-        this.findBookById = findBookById;
-        this.softDeleteBook = softDeleteBook;
-        this.updateBook = updateBook;
-        this.validatorBooks = validatorBooks;
-    }
+    private final CreateBook createBook;
+    private final FindAllBooks findAllBooks;
+    private final FindBookById findBookById;
+    private final SoftDeleteBook softDeleteBook;
+    private final UpdateBook updateBook;
+    private final ServiceValidatorBooks validatorBooks;
 
     @PostMapping(value ="/api/books")
     public ResponseEntity<Object> createBook(@RequestBody BookDto bookDto) {
@@ -76,7 +62,7 @@ public class BooksController {
     public ResponseEntity<Object> softDeleteBook(@PathVariable("id") Long id) {
         Map<String, String> json =new HashMap<>();
         try{
-            this.softDeleteBook.handle(id);
+          Object book = this.softDeleteBook.handle(id);
             json.put("message", "Delete book");
         } catch (ApiErrors apiErrors) {
             apiErrors.printStackTrace();

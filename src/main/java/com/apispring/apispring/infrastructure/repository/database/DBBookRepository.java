@@ -2,6 +2,7 @@ package com.apispring.apispring.infrastructure.repository.database;
 
 import com.apispring.apispring.application.repository.BookRepository;
 import com.apispring.apispring.domain.model.BookModel;
+import com.apispring.apispring.infrastructure.entity.Book;
 import com.apispring.apispring.infrastructure.mapper.BookMapper;
 import com.apispring.apispring.infrastructure.repository.springdata.JPABookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
