@@ -1,10 +1,10 @@
-INSERT IGNORE INTO book (author, title, overview, pages) VALUES
-("Miguel de Cervantes","Don Quixote","Alonso Quixano, a retired country gentleman in his fifties, 
+INSERT IGNORE INTO book (id,author, title, overview, pages) VALUES
+(1, "Miguel de Cervantes","Don Quixote","Alonso Quixano, a retired country gentleman in his fifties,
 lives in an unnamed section of La Mancha with his niece and a housekeeper. He has become obsessed with books of chivalry, 
 and believes their every word to be true, despite the fact that many of the events in them are clearly impossible. 
 Quixano eventually appears to other people to have lost his mind from little sleep and food and because of so much reading. ",
  863),
-("J. K. Rowling", "Harry Potter and the Goblet of Fire","Lord Voldemort, the dark wizard responsible for the deaths of Harry's parents, 
+(2, "J. K. Rowling", "Harry Potter and the Goblet of Fire","Lord Voldemort, the dark wizard responsible for the deaths of Harry's parents,
 is growing stronger. At the Quidditch World Cup, Voldemort's signature Dark Mark appears in the sky over the stadium, causing pandemonium. 
 The lightning-bolt-shaped scar on Harry's forehead is sporadically causing him agonizing pain, 
 and he is also hearing disturbing voices. Harry realizes that all this is the result of a strong connection between himself and the Dark Lord, one that is putting him in grave danger. 
