@@ -19,7 +19,7 @@ public class DBBookRepository implements BookRepository {
     private BookMapper bookMapper;
 
     @Override
-    public BookModel findById(Long id) {
+    public BookModel findById(Integer id) {
         return this.bookMapper.toModel(this.bookRepository.findById(id).orElse(null));
     }
 

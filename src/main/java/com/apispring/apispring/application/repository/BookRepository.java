@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookRepository {
 
-    BookModel findById(Long id);
+    BookModel findById(Integer id);
 
     BookModel findByTitle(String title);
 

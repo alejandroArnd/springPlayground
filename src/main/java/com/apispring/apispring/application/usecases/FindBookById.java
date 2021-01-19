@@ -12,7 +12,7 @@ public class FindBookById {
         this.bookRepository = bookRepository;
     }
 
-    public BookModel handle(Long id){
+    public BookModel handle(Integer id){
         BookModel book = this.bookRepository.findById(id);
 
         if (book == null){

@@ -12,7 +12,7 @@ public class SoftDeleteBook {
         this.bookRepository = bookRepository;
     }
 
-    public BookModel handle(Long id){
+    public BookModel handle(Integer id){
         BookModel bookFound = this.bookRepository.findById(id);
 
         if (bookFound == null){

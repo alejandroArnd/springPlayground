@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column(name = "title", length = 255, nullable = false)
     private String title;
     @Column(name = "author", length = 255, nullable = false)

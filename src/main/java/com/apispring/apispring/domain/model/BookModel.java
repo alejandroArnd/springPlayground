@@ -1,7 +1,7 @@
 package com.apispring.apispring.domain.model;
 
 public class BookModel {
-    private Long id;
+    private Integer id;
     private String title;
     private String author;
     private String overview;
@@ -17,11 +17,11 @@ public class BookModel {
         this.pages = pages;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

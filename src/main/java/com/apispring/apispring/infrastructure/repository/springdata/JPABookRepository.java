@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface JPABookRepository extends JpaRepository<Book, Long> {
+public interface JPABookRepository extends JpaRepository<Book, Integer> {
     Optional<Book> findByTitle(String title);
 }

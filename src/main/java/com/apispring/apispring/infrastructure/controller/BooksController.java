@@ -47,7 +47,7 @@ public class BooksController {
     }
 
     @GetMapping(value ="/api/books/{id}")
-    public ResponseEntity<Object> findBooksById(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> findBooksById(@PathVariable("id") Integer id) {
         Object book;
         try {
             book = this.findBookById.handle(id);
@@ -59,10 +59,10 @@ public class BooksController {
     }
 
     @DeleteMapping(value ="/api/books/{id}")
-    public ResponseEntity<Object> softDeleteBook(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> softDeleteBook(@PathVariable("id") Integer id) {
         Map<String, String> json =new HashMap<>();
         try{
-          Object book = this.softDeleteBook.handle(id);
+            this.softDeleteBook.handle(id);
             json.put("message", "Delete book");
         } catch (ApiErrors apiErrors) {
             apiErrors.printStackTrace();
