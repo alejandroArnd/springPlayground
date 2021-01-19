@@ -30,6 +30,7 @@ public class CreateBookTests {
         bookDto.setTitle("Example");
 
         when(this.bookRepository.findByTitle(bookDto.getTitle())).thenReturn(null);
+        doNothing().when(this.bookRepository).save(any(BookModel.class));
         this.createBook.handle(bookDto);
 
         verify(this.bookRepository, times(1)).findByTitle("Example");

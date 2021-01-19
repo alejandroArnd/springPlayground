@@ -26,24 +26,24 @@ public class SoftDeleteBookTests {
     @Test
     public void softDeleteBookWhenIdExist(){
         BookModel bookModelExpected = new BookModel();
-        bookModelExpected.setId(1L);
+        bookModelExpected.setId(1);
 
-        when(this.bookRepository.findById(1L)).thenReturn(bookModelExpected);
-        BookModel bookModel = this.softDeleteBook.handle(1L);
+        when(this.bookRepository.findById(1)).thenReturn(bookModelExpected);
+        BookModel bookModel = this.softDeleteBook.handle(1);
 
-        verify(this.bookRepository, times(1)).findById(1L);
+        verify(this.bookRepository, times(1)).findById(1);
         verify(this.bookRepository, times(1)).save(bookModelExpected);
         assertTrue(bookModel.getDeleted());
     }
 
     @Test
     public void softDeleteBookWhenIdDoesntExist(){
-        when(this.bookRepository.findById(2L)).thenReturn(null);
+        when(this.bookRepository.findById(2)).thenReturn(null);
 
         assertThrows(BookNotFound.class, ()->{
-            this.softDeleteBook.handle(2L);
+            this.softDeleteBook.handle(2);
         });
-        verify(this.bookRepository, times(1)).findById(2L);
+        verify(this.bookRepository, times(1)).findById(2);
         verify(this.bookRepository, times(0)).save(any(BookModel.class));
     }
 }

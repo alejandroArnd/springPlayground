@@ -28,15 +28,16 @@ public class UpdateBookTests {
     @Test
     public void updateBookWhenIdExistsAndTitleDoesntExist(){
         RequestUpdateBookDto requestUpdateBookDto = new RequestUpdateBookDto();
-        requestUpdateBookDto.setId(1L);
+        requestUpdateBookDto.setId(1);
         requestUpdateBookDto.setTitle("Example");
 
         when(this.bookRepository.findById(requestUpdateBookDto.getId())).thenReturn(new BookModel());
         when(this.bookRepository.findByTitle("Example")).thenReturn(null);
+        doNothing().when(this.bookRepository).save(any(BookModel.class));
 
         BookModel bookModel = this.updateBook.handle(requestUpdateBookDto);
 
-        verify(this.bookRepository, times(1)).findById(1L);
+        verify(this.bookRepository, times(1)).findById(1);
         verify(this.bookRepository, times(1)).findByTitle("Example");
         verify(this.bookRepository, times(1)).save(any(BookModel.class));
 
@@ -46,14 +47,14 @@ public class UpdateBookTests {
     @Test
     public void updateBookWhenIdDoesntExist(){
         RequestUpdateBookDto requestUpdateBookDto = new RequestUpdateBookDto();
-        requestUpdateBookDto.setId(2L);
+        requestUpdateBookDto.setId(2);
 
         when(this.bookRepository.findById(requestUpdateBookDto.getId())).thenReturn(null);
 
         assertThrows(BookNotFound.class, ()->{
             this.updateBook.handle(requestUpdateBookDto);
         });
-        verify(this.bookRepository, times(1)).findById(2L);
+        verify(this.bookRepository, times(1)).findById(2);
         verify(this.bookRepository, times(0)).findByTitle("Example");
         verify(this.bookRepository, times(0)).save(any(BookModel.class));
     }
@@ -61,7 +62,7 @@ public class UpdateBookTests {
     @Test
     public void updateBookWhenTitleAlreadyExist(){
         RequestUpdateBookDto requestUpdateBookDto = new RequestUpdateBookDto();
-        requestUpdateBookDto.setId(2L);
+        requestUpdateBookDto.setId(2);
         requestUpdateBookDto.setTitle("Example");
 
         when(this.bookRepository.findById(requestUpdateBookDto.getId())).thenReturn(new BookModel());
@@ -70,7 +71,7 @@ public class UpdateBookTests {
         assertThrows(BookAlreadyExist.class, ()->{
             this.updateBook.handle(requestUpdateBookDto);
         });
-        verify(this.bookRepository, times(1)).findById(2L);
+        verify(this.bookRepository, times(1)).findById(2);
         verify(this.bookRepository, times(1)).findByTitle("Example");
         verify(this.bookRepository, times(0)).save(any(BookModel.class));
     }

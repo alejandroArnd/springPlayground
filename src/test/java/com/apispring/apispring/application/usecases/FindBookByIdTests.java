@@ -26,23 +26,23 @@ public class FindBookByIdTests {
     @Test
     public void findBookByIdWhenIdExists(){
         BookModel bookModelExpected = new BookModel();
-        bookModelExpected.setId(1L);
+        bookModelExpected.setId(1);
 
-        when(this.bookRepository.findById(1L)).thenReturn(bookModelExpected);
-        BookModel bookModel = this.findBookById.handle(1L);
+        when(this.bookRepository.findById(1)).thenReturn(bookModelExpected);
+        BookModel bookModel = this.findBookById.handle(1);
 
-        verify(this.bookRepository, times(1)).findById(1L);
+        verify(this.bookRepository, times(1)).findById(1);
         assertEquals(bookModelExpected,bookModel);
 
     }
 
     @Test
     public void findBookByIdWhenIdDoesntExist(){
-        when(this.bookRepository.findById(2L)).thenReturn(null);
+        when(this.bookRepository.findById(2)).thenReturn(null);
 
         assertThrows(BookNotFound.class, ()->{
-            this.findBookById.handle(2L);
+            this.findBookById.handle(2);
         });
-        verify(this.bookRepository, times(1)).findById(2L);
+        verify(this.bookRepository, times(1)).findById(2);
     }
 }
