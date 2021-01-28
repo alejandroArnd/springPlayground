@@ -25,7 +25,7 @@ public class DBBookRepository implements BookRepository {
 
     @Override
     public BookModel findByTitle(String title) {
-        return this.bookMapper.toModel(bookRepository.findByTitle(title).orElse(null));
+        return this.bookMapper.toModel(this.bookRepository.findByTitle(title).orElse(null));
     }
 
     @Override
@@ -35,6 +35,6 @@ public class DBBookRepository implements BookRepository {
 
     @Override
     public void save(BookModel book) {
-        bookRepository.save(this.bookMapper.toEntity(book));
+        this.bookRepository.save(this.bookMapper.toEntity(book));
     }
 }
