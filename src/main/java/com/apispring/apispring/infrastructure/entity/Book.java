@@ -16,6 +16,7 @@ import javax.persistence.*;
         @UniqueConstraint(columnNames = {"title"})
 })
 public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -29,5 +30,4 @@ public class Book {
     private Integer pages;
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
-
 }

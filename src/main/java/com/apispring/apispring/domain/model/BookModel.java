@@ -1,6 +1,7 @@
 package com.apispring.apispring.domain.model;
 
 public class BookModel {
+
     private Integer id;
     private String title;
     private String author;
