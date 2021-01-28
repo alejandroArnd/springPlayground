@@ -30,7 +30,6 @@ public class User implements UserDetails {
     private String email;
     @Column(name = "password", length = 255, nullable = false)
     private String password;
-    @Column(name = "roles", nullable = false)
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
