@@ -3,10 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="CreateBook" class="com.apispring.apispring.application.usecases.CreateBook"></bean>
-    <bean id="FindAllBooks" class="com.apispring.apispring.application.usecases.FindAllBooks"></bean>
-    <bean id="FindBookById" class="com.apispring.apispring.application.usecases.FindBookById"></bean>
-    <bean id="SoftDeleteBook" class="com.apispring.apispring.application.usecases.SoftDeleteBook"></bean>
-    <bean id="UpdateBook" class="com.apispring.apispring.application.usecases.UpdateBook"></bean>
-    <bean id="ValidatorBook" class="com.apispring.apispring.application.services.ServiceValidatorBooks"></bean>
+    <bean id="CreateBook" class="com.apispring.apispring.application.usecases.CreateBook"/>
+    <bean id="FindAllBooks" class="com.apispring.apispring.application.usecases.FindAllBooks"/>
+    <bean id="FindBookById" class="com.apispring.apispring.application.usecases.FindBookById"/>
+    <bean id="SoftDeleteBook" class="com.apispring.apispring.application.usecases.SoftDeleteBook"/>
+    <bean id="UpdateBook" class="com.apispring.apispring.application.usecases.UpdateBook"/>
+    <bean id="ValidatorBook" class="com.apispring.apispring.application.services.ServiceValidatorBooks"/>
+    <bean id="CreateUser" class="com.apispring.apispring.application.usecases.CreateUser"/>
 </beans>
