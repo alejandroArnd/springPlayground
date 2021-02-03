@@ -24,6 +24,11 @@ public class DBUserRepository implements UserRepository {
     }
 
     @Override
+    public Optional<UserModel> findById(Integer id) {
+        return Optional.ofNullable(this.userMapper.toModel(this.userRepository.findById(id).orElse(null)));
+    }
+
+    @Override
     public void save(UserModel userModel) {
         this.userRepository.save(this.userMapper.toEntity(userModel));
     }
