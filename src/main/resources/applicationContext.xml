@@ -10,4 +10,5 @@
     <bean id="UpdateBook" class="com.apispring.apispring.application.usecases.UpdateBook"/>
     <bean id="ValidatorBook" class="com.apispring.apispring.application.services.ServiceValidatorBooks"/>
     <bean id="CreateUser" class="com.apispring.apispring.application.usecases.CreateUser"/>
+    <bean id="ServiceSecurity" class="com.apispring.apispring.application.services.ServiceSecurity"/>
 </beans>
