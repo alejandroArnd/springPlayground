@@ -1,11 +1,11 @@
 package com.apispring.apispring.application.services;
 
-import com.apispring.apispring.application.dto.BookDto;
+import com.apispring.apispring.application.dto.CreateBookRequestDto;
 import com.apispring.apispring.domain.exception.*;
 
 public class ServiceValidatorBooks {
 
-    public void checkPropertiesBook(BookDto requestBook)
+    public void checkPropertiesBook(CreateBookRequestDto requestBook)
             throws
             PagesCanNotBeEmpty,
             PageCanNotBeNegativeNumber,

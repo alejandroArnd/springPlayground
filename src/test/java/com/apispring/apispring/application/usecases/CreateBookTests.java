@@ -1,6 +1,6 @@
 package com.apispring.apispring.application.usecases;
 
-import com.apispring.apispring.application.dto.BookDto;
+import com.apispring.apispring.application.dto.CreateBookRequestDto;
 import com.apispring.apispring.application.repository.BookRepository;
 import com.apispring.apispring.domain.exception.BookAlreadyExist;
 import com.apispring.apispring.domain.model.BookModel;
@@ -26,12 +26,12 @@ public class CreateBookTests {
 
     @Test
     public void createBookWhenTitleExists(){
-        BookDto bookDto = new BookDto();
-        bookDto.setTitle("Example");
+        CreateBookRequestDto createBookRequestDto = new CreateBookRequestDto();
+        createBookRequestDto.setTitle("Example");
 
-        when(this.bookRepository.findByTitle(bookDto.getTitle())).thenReturn(null);
+        when(this.bookRepository.findByTitle(createBookRequestDto.getTitle())).thenReturn(null);
         doNothing().when(this.bookRepository).save(any(BookModel.class));
-        this.createBook.handle(bookDto);
+        this.createBook.handle(createBookRequestDto);
 
         verify(this.bookRepository, times(1)).findByTitle("Example");
         verify(this.bookRepository, times(1)).save(any(BookModel.class));
@@ -39,13 +39,13 @@ public class CreateBookTests {
 
     @Test
     public void createBookWhenTitleDoesntExist(){
-        BookDto bookDto = new BookDto();
-        bookDto.setTitle("Example");
+        CreateBookRequestDto createBookRequestDto = new CreateBookRequestDto();
+        createBookRequestDto.setTitle("Example");
 
-        when(this.bookRepository.findByTitle(bookDto.getTitle())).thenReturn(new BookModel());
+        when(this.bookRepository.findByTitle(createBookRequestDto.getTitle())).thenReturn(new BookModel());
 
         assertThrows(BookAlreadyExist.class,()->{
-            this.createBook.handle(bookDto);
+            this.createBook.handle(createBookRequestDto);
         });
         verify(this.bookRepository, times(1)).findByTitle("Example");
         verify(this.bookRepository, times(0)).save(any(BookModel.class));

@@ -4,7 +4,7 @@ import com.apispring.apispring.application.dto.RequestUpdateBookDto;
 import com.apispring.apispring.application.services.ServiceValidatorBooks;
 import com.apispring.apispring.application.usecases.*;
 import com.apispring.apispring.domain.exception.ApiErrors;
-import com.apispring.apispring.application.dto.BookDto;
+import com.apispring.apispring.application.dto.CreateBookRequestDto;
 import com.apispring.apispring.domain.model.BookModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,11 +27,11 @@ public class BooksController {
     private final ServiceValidatorBooks validatorBooks;
 
     @PostMapping(value ="/api/books")
-    public ResponseEntity<Object> createBook(@RequestBody BookDto bookDto) {
+    public ResponseEntity<Object> createBook(@RequestBody CreateBookRequestDto createBookRequestDto) {
         Map<String, String> json = new HashMap<>();
         try {
-            this.validatorBooks.checkPropertiesBook(bookDto);
-            this.createBook.handle(bookDto);
+            this.validatorBooks.checkPropertiesBook(createBookRequestDto);
+            this.createBook.handle(createBookRequestDto);
             json.put("message", "book created!");
         } catch (ApiErrors apiErrors) {
             apiErrors.printStackTrace();

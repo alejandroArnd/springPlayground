@@ -1,15 +1,15 @@
 package com.apispring.apispring.application.dto;
 
-public class BookDto {
+public class CreateBookRequestDto {
 
     private String title;
     private String author;
     private String overview;
     private Integer pages;
 
-    public BookDto() { }
+    public CreateBookRequestDto() { }
 
-    public BookDto(String title, String author, String overview, Integer pages) {
+    public CreateBookRequestDto(String title, String author, String overview, Integer pages) {
         this.title = title;
         this.author = author;
         this.overview = overview;

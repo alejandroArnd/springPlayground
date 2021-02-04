@@ -1,6 +1,6 @@
 package com.apispring.apispring.application.dto;
 
-public class RequestUpdateBookDto extends BookDto {
+public class RequestUpdateBookDto extends CreateBookRequestDto {
 
     private Integer id;
 
