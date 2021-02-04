@@ -18,7 +18,7 @@ public class JwtService {
     public static final String TOKEN_PREFIX = "Bearer";
     public static final String TOKEN_TYPE = "JWT";
     private static final int EXPIRATION_TIME = 1000 * 60 * 60;
-    private String JwtSecret = "example";
+    private String JwtSecret = "Itisaperiodofcivilwarsinthegalaxy.AbraveallianceofundergroundfreedomfightershaschallengedthetyrannyandoppressionoftheawesomeGALACTICEMPIRE";
 
     public String createToken(Authentication authentication){
         User user = (User) authentication.getPrincipal();
