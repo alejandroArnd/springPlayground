@@ -22,7 +22,7 @@ public class CreateUser {
 
     public void handle (CreateUserDto createUserDto){
         String passwordCode = this.passwordEncoder.encode(createUserDto.getPassword());
-        Set<UserRole> userRoles = Stream.of(UserRole.USER_ROLE).collect(Collectors.toSet());
+        Set<UserRole> userRoles = Stream.of(UserRole.USER).collect(Collectors.toSet());
         UserModel userModel = new UserModel(createUserDto.getUsername(),createUserDto.getEmail(),passwordCode,userRoles);
         this.userRepository.save(userModel);
     }
