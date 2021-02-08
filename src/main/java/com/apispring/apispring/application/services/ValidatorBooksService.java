@@ -3,7 +3,7 @@ package com.apispring.apispring.application.services;
 import com.apispring.apispring.application.dto.CreateBookRequestDto;
 import com.apispring.apispring.domain.exception.*;
 
-public class ServiceValidatorBooks {
+public class ValidatorBooksService {
 
     public void checkPropertiesBook(CreateBookRequestDto requestBook)
             throws

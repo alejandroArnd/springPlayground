@@ -8,7 +8,7 @@
     <bean id="FindBookById" class="com.apispring.apispring.application.usecases.FindBookById"/>
     <bean id="SoftDeleteBook" class="com.apispring.apispring.application.usecases.SoftDeleteBook"/>
     <bean id="UpdateBook" class="com.apispring.apispring.application.usecases.UpdateBook"/>
-    <bean id="ValidatorBook" class="com.apispring.apispring.application.services.ServiceValidatorBooks"/>
+    <bean id="ValidatorBook" class="com.apispring.apispring.application.services.ValidatorBooksService"/>
     <bean id="CreateUser" class="com.apispring.apispring.application.usecases.CreateUser"/>
-    <bean id="ServiceSecurity" class="com.apispring.apispring.application.services.ServiceSecurity"/>
+    <bean id="ServiceSecurity" class="com.apispring.apispring.application.services.SecurityService"/>
 </beans>

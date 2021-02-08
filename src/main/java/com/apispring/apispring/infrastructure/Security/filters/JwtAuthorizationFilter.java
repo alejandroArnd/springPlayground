@@ -1,13 +1,11 @@
 package com.apispring.apispring.infrastructure.Security.filters;
 
-import com.apispring.apispring.application.services.ServiceSecurity;
-import com.apispring.apispring.domain.model.UserModel;
+import com.apispring.apispring.application.services.SecurityService;
 import com.apispring.apispring.infrastructure.Security.service.JwtService;
 import com.apispring.apispring.infrastructure.entity.User;
 import com.apispring.apispring.infrastructure.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
@@ -25,7 +23,7 @@ import java.io.IOException;
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-    private final ServiceSecurity serviceSecurity;
+    private final SecurityService securityService;
     private final UserMapper userMapper;
 
     @Override
@@ -39,7 +37,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         if (token != null && this.jwtService.validateToken(token)){
             int userId = this.jwtService.getIdOfUserFromJwt(token);
 
-            User user = this.userMapper.toEntity(this.serviceSecurity.loadUserById(userId));
+            User user = this.userMapper.toEntity(this.securityService.loadUserById(userId));
 
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user, user.getRoles(), user.getAuthorities());
             authenticationToken.setDetails(new WebAuthenticationDetails(httpServletRequest));

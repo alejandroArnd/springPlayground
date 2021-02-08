@@ -1,7 +1,7 @@
 package com.apispring.apispring.infrastructure.controller;
 
 import com.apispring.apispring.application.dto.RequestUpdateBookDto;
-import com.apispring.apispring.application.services.ServiceValidatorBooks;
+import com.apispring.apispring.application.services.ValidatorBooksService;
 import com.apispring.apispring.application.usecases.*;
 import com.apispring.apispring.domain.exception.ApiErrors;
 import com.apispring.apispring.application.dto.CreateBookRequestDto;
@@ -24,7 +24,7 @@ public class BooksController {
     private final FindBookById findBookById;
     private final SoftDeleteBook softDeleteBook;
     private final UpdateBook updateBook;
-    private final ServiceValidatorBooks validatorBooks;
+    private final ValidatorBooksService validatorBooks;
 
     @PostMapping(value ="/api/books")
     public ResponseEntity<Object> createBook(@RequestBody CreateBookRequestDto createBookRequestDto) {
