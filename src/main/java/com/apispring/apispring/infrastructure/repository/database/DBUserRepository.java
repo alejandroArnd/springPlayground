@@ -19,13 +19,13 @@ public class DBUserRepository implements UserRepository {
     private UserMapper userMapper;
 
     @Override
-    public Optional<User> findByUsernameForSecurity(String username) {
-        return this.userRepository.findByUsername(username);
+    public UserModel findByUsername(String username) {
+        return this.userMapper.toModel(this.userRepository.findByUsername(username).orElse(null));
     }
 
     @Override
-    public Optional<UserModel> findById(Integer id) {
-        return Optional.ofNullable(this.userMapper.toModel(this.userRepository.findById(id).orElse(null)));
+    public UserModel findById(Integer id) {
+        return this.userMapper.toModel(this.userRepository.findById(id).orElse(null));
     }
 
     @Override
