@@ -1,6 +1,6 @@
 package com.apispring.apispring.infrastructure.Security.filters;
 
-import com.apispring.apispring.application.services.SecurityService;
+import com.apispring.apispring.infrastructure.Security.service.SecurityService;
 import com.apispring.apispring.infrastructure.Security.service.JwtService;
 import com.apispring.apispring.infrastructure.entity.User;
 import com.apispring.apispring.infrastructure.mapper.UserMapper;

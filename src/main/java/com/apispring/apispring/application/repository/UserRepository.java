@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface UserRepository {
 
-    Optional<User> findByUsernameForSecurity(String username);
+    UserModel findByUsername(String username);
 
-    Optional<UserModel> findById(Integer id);
+    UserModel findById(Integer id);
 
     void save(UserModel userModel);
 }
