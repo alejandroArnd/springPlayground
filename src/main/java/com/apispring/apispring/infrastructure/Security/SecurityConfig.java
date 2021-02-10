@@ -1,6 +1,6 @@
 package com.apispring.apispring.infrastructure.Security;
 
-import com.apispring.apispring.application.services.SecurityService;
+import com.apispring.apispring.infrastructure.Security.service.SecurityService;
 import com.apispring.apispring.infrastructure.Security.filters.JwtAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
