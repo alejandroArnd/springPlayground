@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecurityService implements UserDetailsService {
 
-    private final UserRepository userRepository;
     private final FindUserById findUserById;
     private final FindUserByUsername findUserByUsername;
     private final UserMapper userMapper;
