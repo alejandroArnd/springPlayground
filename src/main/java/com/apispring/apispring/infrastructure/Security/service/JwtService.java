@@ -5,9 +5,20 @@ import com.apispring.apispring.infrastructure.entity.User;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.KeyFactory;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -19,6 +30,13 @@ public class JwtService {
     public static final String TOKEN_TYPE = "JWT";
     private static final int EXPIRATION_TIME = 1000 * 60 * 60;
     private String JwtSecret = "Itisaperiodofcivilwarsinthegalaxy.AbraveallianceofundergroundfreedomfightershaschallengedthetyrannyandoppressionoftheawesomeGALACTICEMPIRE";
+    private RSAPublicKey rsaPublicKey;
+    private RSAPrivateKey rsaprivateKey;
+
+    public JwtService() throws Exception {
+        this.rsaPublicKey = this.readPublicKey("/usr/src/myapp/config/jwt/public.der");
+        this.rsaprivateKey = this.readPrivateKey("/usr/src/myapp/config/jwt/private.der");
+    }
 
     public String createToken(Authentication authentication){
         User user = (User) authentication.getPrincipal();
@@ -82,5 +100,23 @@ public class JwtService {
 
         }
         return false;
+    }
+
+    public RSAPrivateKey readPrivateKey(String filename) throws Exception {
+
+        byte[] keyBytes = Files.readAllBytes(Paths.get(filename));
+
+        PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(keyBytes);
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        return (RSAPrivateKey) keyFactory.generatePrivate(pkcs8EncodedKeySpec);
+    }
+
+    public RSAPublicKey readPublicKey(String filename) throws Exception{
+
+        byte[] keyBytes = Files.readAllBytes(Paths.get(filename));
+
+        X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(keyBytes);
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        return (RSAPublicKey) keyFactory.generatePublic(x509EncodedKeySpec);
     }
 }
