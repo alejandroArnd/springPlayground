@@ -29,13 +29,12 @@ public class JwtService {
     public static final String TOKEN_PREFIX = "Bearer";
     public static final String TOKEN_TYPE = "JWT";
     private static final int EXPIRATION_TIME = 1000 * 60 * 60;
-    private String JwtSecret = "Itisaperiodofcivilwarsinthegalaxy.AbraveallianceofundergroundfreedomfightershaschallengedthetyrannyandoppressionoftheawesomeGALACTICEMPIRE";
     private RSAPublicKey rsaPublicKey;
-    private RSAPrivateKey rsaprivateKey;
+    private RSAPrivateKey rsaPrivateKey;
 
     public JwtService() throws Exception {
         this.rsaPublicKey = this.readPublicKey("/usr/src/myapp/config/jwt/public.der");
-        this.rsaprivateKey = this.readPrivateKey("/usr/src/myapp/config/jwt/private.der");
+        this.rsaPrivateKey = this.readPrivateKey("/usr/src/myapp/config/jwt/private.der");
     }
 
     public String createToken(Authentication authentication){
@@ -44,7 +43,7 @@ public class JwtService {
         Date tokenExpirationDate = new Date(System.currentTimeMillis()+EXPIRATION_TIME);
 
         return Jwts.builder()
-                .signWith(Keys.hmacShaKeyFor(JwtSecret.getBytes()), SignatureAlgorithm.HS512)
+                .signWith(this.rsaPrivateKey, SignatureAlgorithm.RS256)
                 .setHeaderParam("typ",TOKEN_TYPE)
                 .setSubject(Integer.toString(user.getId()))
                 .setIssuedAt(new Date())
@@ -56,7 +55,7 @@ public class JwtService {
 
     public Boolean hasTokenExpired(String token){
         return Jwts.parserBuilder()
-                .setSigningKey(JwtSecret.getBytes())
+                .setSigningKey(this.rsaPublicKey)
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
@@ -66,7 +65,7 @@ public class JwtService {
 
     public Integer getIdOfUserFromJwt(String token){
         String userId = Jwts.parserBuilder()
-                .setSigningKey(Keys.hmacShaKeyFor(this.JwtSecret.getBytes()))
+                .setSigningKey(this.rsaPublicKey)
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
@@ -78,7 +77,7 @@ public class JwtService {
     public Boolean validateToken(String token){
         try {
             Jwts.parserBuilder()
-                    .setSigningKey(JwtSecret.getBytes())
+                    .setSigningKey(this.rsaPublicKey)
                     .build()
                     .parseClaimsJws(token);
 
